@@ -15,6 +15,7 @@ dogForm.addEventListener('submit', (e) => {
     submitHandler();
     removeAllChildren(table);
     getDogs();
+    dogForm.reset();
 });
 
 //functions
@@ -53,11 +54,11 @@ function submitHandler() {
     console.log(activeDog, ' is the active dog');
     fetch(`http://localhost:3000/dogs/${activeDog}`, {
         method : 'PATCH',
-        body: JSON.stringify(newDogInfo),
         headers: {
             'Content-Type': 'application-json',
             'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify(newDogInfo)
     })
     .then(res => res.json())
 }
